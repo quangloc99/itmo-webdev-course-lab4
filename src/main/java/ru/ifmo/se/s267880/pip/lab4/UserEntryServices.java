@@ -6,7 +6,9 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.json.Json;
+import javax.json.JsonObject;
 import javax.ws.rs.*;
+import java.util.function.Supplier;
 
 @Path("user-entry")
 @RequestScoped
@@ -17,6 +19,20 @@ public class UserEntryServices {
 
     @Inject AppState appState;
 
+    private JsonObject buildSimpleJsonResponse(Supplier<String> supplier) {
+        String message = supplier.get();
+        if (message == null) {
+            return Json.createObjectBuilder()
+                    .add("status", "success")
+                    .add("message", "")
+                    .build();
+        } else {
+            return Json.createObjectBuilder()
+                    .add("status", "fail")
+                    .add("message", message)
+                    .build();
+        }
+    }
 
     @POST
     @Path("register")
@@ -25,33 +41,38 @@ public class UserEntryServices {
             @FormParam("email") String email,
             @FormParam("password") String password
     ) {
-        String errorMessage = null;
-        if (appState.getUser() != null) {
-            errorMessage = "You need to log out first.";
-        } else if (!validator.isEmail(email)) {
-            errorMessage = "User name must be an email.";
-        } else if (!validator.isGoodPassword(password)) {
-            errorMessage = "Password is not strong enough";
-        } else {
+        return buildSimpleJsonResponse(() -> {
+            if (appState.getUser() != null) {
+                return "You need to log out first.";
+            }
+            if (!validator.isEmail(email)) {
+                return "User name must be an email.";
+            }
+            if (!validator.isGoodPassword(password)) {
+                return "Password is not strong enough";
+            }
             UserEntity user = new UserEntity(email, hashGenerator.getHash(password));
             try {
                 user = databaseServices.add(user);
                 appState.setUser(user);
             } catch (UserExistedException ex) {
-                errorMessage = ex.getMessage();
+                return ex.getMessage();
             }
-        }
+            return null;
 
-        if (errorMessage != null) {
-            return Json.createObjectBuilder()
-                    .add("status", "fail")
-                    .add("message", errorMessage)
-                    .build().toString();
-        }
+        }).toString();
+    }
 
-        return Json.createObjectBuilder()
-                .add("status", "success")
-                .add("message", "")
-                .build().toString();
+    @GET
+    @Path("/logout")
+    @Produces("text/json")
+    public String logout() {
+        return buildSimpleJsonResponse(() -> {
+            if (appState.getUser() == null) {
+                return "You need to login first in order to logout.";
+            }
+            appState.setUser(null);
+            return null;
+        }).toString();
     }
 }
