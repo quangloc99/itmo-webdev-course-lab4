@@ -35,7 +35,7 @@ public class DatabaseServicesBean implements Serializable {
         return result.isEmpty() ? null : result.get(0);
     }
 
-    public void add(UserEntity entity) throws UserExistedException {
+    public UserEntity add(UserEntity entity) throws UserExistedException {
         UserEntity existedUser = getUserByEmail(entity.getEmail());
         if (existedUser != null) {
             throw UserExistedException.withEmail(entity.getEmail());
@@ -43,5 +43,7 @@ public class DatabaseServicesBean implements Serializable {
         entityManager.getTransaction().begin();
         entityManager.persist(entity);
         entityManager.getTransaction().commit();
+
+        return entity;
     }
 }

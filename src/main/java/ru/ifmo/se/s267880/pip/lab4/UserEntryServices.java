@@ -28,7 +28,7 @@ public class UserEntryServices {
 
         UserEntity user = new UserEntity(email, hashGenerator.getHash(password));
         try {
-            databaseServices.add(user);
+            user = databaseServices.add(user);
         } catch (UserExistedException ex) {
             errorMessage = ex.getMessage();
         }
