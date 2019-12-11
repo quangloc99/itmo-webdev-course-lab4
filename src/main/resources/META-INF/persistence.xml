@@ -9,7 +9,6 @@
             <property name="javax.persistence.jdbc.user" value="APP"/>
             <property name="javax.persistence.jdbc.password" value="123456"/>
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
-            <property name="eclipselink.persistence-context.flush-mode" value="commit" />
         </properties>
     </persistence-unit>
 </persistence>
