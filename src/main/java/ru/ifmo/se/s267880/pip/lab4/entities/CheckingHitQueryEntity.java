@@ -11,6 +11,9 @@ public class CheckingHitQueryEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private UserEntity owner;
+
     private BigDecimal x = BigDecimal.ZERO;
     private BigDecimal y = BigDecimal.ZERO;
     private BigDecimal r = BigDecimal.ZERO;
@@ -54,6 +57,16 @@ public class CheckingHitQueryEntity {
                 .add("result", result);
     }
 
+    @Override
+    public String toString() {
+        return "CheckingHitQueryEntity{" +
+                " x=" + x +
+                ", y=" + y +
+                ", r=" + r +
+                ", result=" + result +
+                '}';
+    }
+
     public BigDecimal getX() {
         return x;
     }
@@ -79,5 +92,13 @@ public class CheckingHitQueryEntity {
     public void setR(BigDecimal r) {
         this.r = r;
         result = checkHit();
+    }
+
+    public UserEntity getOwner() {
+        return owner;
+    }
+
+    public void setOwner(UserEntity owner) {
+        this.owner = owner;
     }
 }

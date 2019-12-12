@@ -1,6 +1,7 @@
 package ru.ifmo.se.s267880.pip.lab4.services;
 
 import ru.ifmo.se.s267880.pip.lab4.beans.AppStateBean;
+import ru.ifmo.se.s267880.pip.lab4.beans.DatabaseServicesBean;
 import ru.ifmo.se.s267880.pip.lab4.beans.StringUtilsBean;
 import ru.ifmo.se.s267880.pip.lab4.entities.CheckingHitQueryEntity;
 import ru.ifmo.se.s267880.pip.lab4.helpers.SimpleMessage;
@@ -20,6 +21,7 @@ import javax.ws.rs.core.Response;
 @Path("/app")
 public class MainAppServices {
     @EJB private StringUtilsBean stringUtils;
+    @EJB private DatabaseServicesBean databaseServices;
     @Inject private AppStateBean appState;
 
     @GET
@@ -39,7 +41,8 @@ public class MainAppServices {
 
             SimpleMessage msg = SimpleMessage.success("");
             if (appState.getUser() != null) {
-                // TODO
+                appState.getUser().addOwnedQuery(query);
+                databaseServices.addQuery(query);
             } else {
                 msg.setMessage("This query has no owner since you did not log in.");
             }

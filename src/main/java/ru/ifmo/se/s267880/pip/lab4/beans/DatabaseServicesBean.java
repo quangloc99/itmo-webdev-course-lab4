@@ -36,4 +36,9 @@ public class DatabaseServicesBean implements Serializable {
         entityManager.persist(entity);
         return entity;
     }
+
+    public void addQuery(CheckingHitQueryEntity query) {
+        entityManager.persist(query);
+    }
+
 }

@@ -1,6 +1,7 @@
 package ru.ifmo.se.s267880.pip.lab4.entities;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -12,7 +13,11 @@ public class UserEntity {
     private String email;
     private String passwordHash;
 
-    @OneToMany
+    @OneToMany(
+            mappedBy = "owner",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
     private List<CheckingHitQueryEntity> ownedQueries;
 
     public UserEntity() {
@@ -45,5 +50,10 @@ public class UserEntity {
 
     public List<CheckingHitQueryEntity> getOwnedQueries() {
         return ownedQueries;
+    }
+
+    public void addOwnedQuery(CheckingHitQueryEntity query) {
+        ownedQueries.add(query);
+        query.setOwner(this);
     }
 }
