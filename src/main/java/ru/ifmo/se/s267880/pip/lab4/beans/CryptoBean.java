@@ -12,14 +12,14 @@ import java.util.Base64;
  * @author Tran Quang Loc
  */
 @Singleton
-public class ICryptoBean implements HashGeneratorBean {
+public class CryptoBean implements IHashGeneratorBean {
     private SecureRandom sr;
     private SecretKeyFactory keyFactory;
     private final char[] PASSWORD_PEPPER = ("JrsWU1QoBW2eDvph").toCharArray();
     private final int N_ITERATION = 1001;
     private final int KEY_LENGTH = 64 * 8;
 
-    public ICryptoBean() {
+    public CryptoBean() {
         try {
             sr = SecureRandom.getInstance("SHA1PRNG");
             keyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");

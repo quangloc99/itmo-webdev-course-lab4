@@ -3,7 +3,7 @@ package ru.ifmo.se.s267880.pip.lab4.beans;
 import javax.ejb.Local;
 
 @Local
-public interface HashGeneratorBean {
+public interface IHashGeneratorBean {
     String getHash(char[] string);
     boolean validate(char[] sourceString, String hashedString);
 

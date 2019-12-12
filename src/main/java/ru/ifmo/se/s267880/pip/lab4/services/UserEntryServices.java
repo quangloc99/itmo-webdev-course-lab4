@@ -2,7 +2,7 @@ package ru.ifmo.se.s267880.pip.lab4.services;
 
 import ru.ifmo.se.s267880.pip.lab4.beans.AppStateBean;
 import ru.ifmo.se.s267880.pip.lab4.beans.DatabaseServicesBean;
-import ru.ifmo.se.s267880.pip.lab4.beans.HashGeneratorBean;
+import ru.ifmo.se.s267880.pip.lab4.beans.IHashGeneratorBean;
 import ru.ifmo.se.s267880.pip.lab4.beans.ValidatorBean;
 import ru.ifmo.se.s267880.pip.lab4.entities.UserEntity;
 import ru.ifmo.se.s267880.pip.lab4.exceptions.UserExistedException;
@@ -19,7 +19,7 @@ import javax.ws.rs.core.Response;
 public class UserEntryServices {
     @EJB private ValidatorBean validator;
     @EJB private DatabaseServicesBean databaseServices;
-    @EJB private HashGeneratorBean hashGenerator;
+    @EJB private IHashGeneratorBean hashGenerator;
 
     @Inject
     AppStateBean appState;
