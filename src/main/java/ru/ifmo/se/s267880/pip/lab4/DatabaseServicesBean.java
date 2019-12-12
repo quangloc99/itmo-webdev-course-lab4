@@ -2,26 +2,28 @@ package ru.ifmo.se.s267880.pip.lab4;
 
 import ru.ifmo.se.s267880.pip.lab4.exceptions.UserExistedException;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.List;
 
-@Stateless
+@Stateful
 public class DatabaseServicesBean implements Serializable {
-    static private EntityManagerFactory entityManagerFactory;
-
-    static {
-        entityManagerFactory = Persistence.createEntityManagerFactory("offline-development-pu");
-    }
-
+    @PersistenceUnit(unitName = "offline-development-pu")
+    private EntityManagerFactory entityManagerFactory;
     private EntityManager entityManager;
-    public DatabaseServicesBean() {
+
+    @PostConstruct
+    public void postConstruct() {
         entityManager = entityManagerFactory.createEntityManager();
     }
 
@@ -43,7 +45,6 @@ public class DatabaseServicesBean implements Serializable {
         entityManager.getTransaction().begin();
         entityManager.persist(entity);
         entityManager.getTransaction().commit();
-
         return entity;
     }
 }
