@@ -1,5 +1,6 @@
 package ru.ifmo.se.s267880.pip.lab4.beans;
 
+import ru.ifmo.se.s267880.pip.lab4.entities.CheckingHitQueryEntity;
 import ru.ifmo.se.s267880.pip.lab4.entities.UserEntity;
 import ru.ifmo.se.s267880.pip.lab4.exceptions.UserExistedException;
 
@@ -14,14 +15,8 @@ import java.util.List;
 
 @Stateful
 public class DatabaseServicesBean implements Serializable {
-    @PersistenceUnit(unitName = "offline-development-pu")
-    private EntityManagerFactory entityManagerFactory;
+    @PersistenceContext(unitName = "offline-development-pu")
     private EntityManager entityManager;
-
-    @PostConstruct
-    public void postConstruct() {
-        entityManager = entityManagerFactory.createEntityManager();
-    }
 
     public UserEntity getUserByEmail(String email) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
@@ -38,9 +33,7 @@ public class DatabaseServicesBean implements Serializable {
         if (existedUser != null) {
             throw UserExistedException.withEmail(entity.getEmail());
         }
-        entityManager.getTransaction().begin();
         entityManager.persist(entity);
-        entityManager.getTransaction().commit();
         return entity;
     }
 }
