@@ -1,4 +1,4 @@
-package ru.ifmo.se.s267880.pip.lab4;
+package ru.ifmo.se.s267880.pip.lab4.utils;
 
 public class SimpleMessage {
     public enum Status { SUCCESS, FAIL; }

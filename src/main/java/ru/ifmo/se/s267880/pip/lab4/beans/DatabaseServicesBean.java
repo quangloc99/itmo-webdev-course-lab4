@@ -1,18 +1,14 @@
-package ru.ifmo.se.s267880.pip.lab4;
+package ru.ifmo.se.s267880.pip.lab4.beans;
 
+import ru.ifmo.se.s267880.pip.lab4.entities.UserEntity;
 import ru.ifmo.se.s267880.pip.lab4.exceptions.UserExistedException;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.ejb.Stateful;
-import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.List;
 

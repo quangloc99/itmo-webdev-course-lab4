@@ -1,4 +1,4 @@
-package ru.ifmo.se.s267880.pip.lab4;
+package ru.ifmo.se.s267880.pip.lab4.beans;
 
 import javax.ejb.Singleton;
 import javax.mail.internet.AddressException;

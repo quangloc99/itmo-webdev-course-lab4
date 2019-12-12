@@ -1,25 +1,28 @@
-package ru.ifmo.se.s267880.pip.lab4;
+package ru.ifmo.se.s267880.pip.lab4.services;
 
+import ru.ifmo.se.s267880.pip.lab4.beans.AppStateBean;
+import ru.ifmo.se.s267880.pip.lab4.beans.DatabaseServicesBean;
+import ru.ifmo.se.s267880.pip.lab4.beans.HashGeneratorBean;
+import ru.ifmo.se.s267880.pip.lab4.beans.ValidatorBean;
+import ru.ifmo.se.s267880.pip.lab4.entities.UserEntity;
 import ru.ifmo.se.s267880.pip.lab4.exceptions.UserExistedException;
+import ru.ifmo.se.s267880.pip.lab4.utils.SimpleMessage;
 
-import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.json.Json;
-import javax.json.JsonObject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
-import java.util.function.Supplier;
 
 @Path("user-entry")
 @RequestScoped
 public class UserEntryServices {
     @EJB private ValidatorBean validator;
     @EJB private DatabaseServicesBean databaseServices;
-    @EJB private HashGenerator hashGenerator;
+    @EJB private HashGeneratorBean hashGenerator;
 
-    @Inject AppState appState;
+    @Inject
+    AppStateBean appState;
 
     @POST
     @Path("register")

@@ -1,11 +1,12 @@
-package ru.ifmo.se.s267880.pip.lab4;
+package ru.ifmo.se.s267880.pip.lab4.beans;
+
+import ru.ifmo.se.s267880.pip.lab4.entities.UserEntity;
 
 import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
 import java.io.Serializable;
 
 @SessionScoped
-public class AppState implements Serializable {
+public class AppStateBean implements Serializable {
     private UserEntity user = null;
 
     public UserEntity getUser() {

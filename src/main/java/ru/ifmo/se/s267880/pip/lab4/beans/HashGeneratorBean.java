@@ -1,9 +1,9 @@
-package ru.ifmo.se.s267880.pip.lab4;
+package ru.ifmo.se.s267880.pip.lab4.beans;
 
 import javax.ejb.Local;
 
 @Local
-public interface HashGenerator {
+public interface HashGeneratorBean {
     String getHash(char[] string);
     boolean validate(char[] sourceString, String hashedString);
 

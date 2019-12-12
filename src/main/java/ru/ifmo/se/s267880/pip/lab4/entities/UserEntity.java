@@ -1,4 +1,4 @@
-package ru.ifmo.se.s267880.pip.lab4;
+package ru.ifmo.se.s267880.pip.lab4.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
