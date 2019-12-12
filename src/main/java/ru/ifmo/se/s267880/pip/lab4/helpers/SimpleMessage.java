@@ -1,4 +1,8 @@
-package ru.ifmo.se.s267880.pip.lab4.utils;
+package ru.ifmo.se.s267880.pip.lab4.helpers;
+
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 
 public class SimpleMessage {
     public enum Status { SUCCESS, FAIL; }
@@ -33,5 +37,11 @@ public class SimpleMessage {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public JsonObjectBuilder getJsonBuilder() {
+        return Json.createObjectBuilder()
+                .add("status", status.name())
+                .add("message", message);
     }
 }

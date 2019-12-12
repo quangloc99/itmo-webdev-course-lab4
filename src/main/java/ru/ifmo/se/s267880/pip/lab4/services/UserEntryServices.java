@@ -6,7 +6,7 @@ import ru.ifmo.se.s267880.pip.lab4.beans.IHashGeneratorBean;
 import ru.ifmo.se.s267880.pip.lab4.beans.ValidatorBean;
 import ru.ifmo.se.s267880.pip.lab4.entities.UserEntity;
 import ru.ifmo.se.s267880.pip.lab4.exceptions.UserExistedException;
-import ru.ifmo.se.s267880.pip.lab4.utils.SimpleMessage;
+import ru.ifmo.se.s267880.pip.lab4.helpers.SimpleMessage;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;

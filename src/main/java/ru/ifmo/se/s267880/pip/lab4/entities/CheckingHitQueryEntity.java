@@ -1,5 +1,9 @@
 package ru.ifmo.se.s267880.pip.lab4.entities;
 
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -7,6 +11,7 @@ import java.math.BigDecimal;
 public class CheckingHitQueryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonbTransient
     private Long id;
 
     private BigDecimal x = BigDecimal.ZERO;
@@ -44,6 +49,13 @@ public class CheckingHitQueryEntity {
         return false;
     }
 
+    public JsonObjectBuilder getJsonBuiler() {
+        return Json.createObjectBuilder()
+                .add("x", x)
+                .add("y", y)
+                .add("r", r)
+                .add("result", result);
+    }
 
     public BigDecimal getX() {
         return x;
