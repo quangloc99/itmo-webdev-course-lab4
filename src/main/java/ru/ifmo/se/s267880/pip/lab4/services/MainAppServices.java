@@ -44,7 +44,7 @@ public class MainAppServices {
                 msg.setMessage("This query has no owner since you did not log in.");
             }
             JsonObject res = msg.getJsonBuilder()
-                    .add("query", query.getJsonBuiler().build())
+                    .add("query", query.getJsonBuilder().build())
                     .build();
             return Response.ok().entity(res.toString()).build();
         } catch (NullPointerException | EJBException e) {
