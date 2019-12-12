@@ -6,6 +6,7 @@ import javax.json.JsonObjectBuilder;
 
 import javax.json.Json;
 import javax.json.JsonObjectBuilder;
+import javax.json.bind.annotation.JsonbTransient;
 
 public class SimpleMessage {
     public enum Status { SUCCESS, FAIL; }
@@ -42,6 +43,7 @@ public class SimpleMessage {
         this.message = message;
     }
 
+    @JsonbTransient
     public JsonObjectBuilder getJsonBuilder() {
         return Json.createObjectBuilder()
                 .add("status", status.name())
