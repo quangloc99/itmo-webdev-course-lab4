@@ -1,9 +1,7 @@
 package ru.ifmo.se.s267880.pip.lab4.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class UserEntity {
@@ -12,8 +10,10 @@ public class UserEntity {
     private Long id;
 
     private String email;
-
     private String passwordHash;
+
+    @OneToMany
+    private List<CheckingHitQueryEntity> ownedQueries;
 
     public UserEntity() {
     }
@@ -41,5 +41,9 @@ public class UserEntity {
 
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
+    }
+
+    public List<CheckingHitQueryEntity> getOwnedQueries() {
+        return ownedQueries;
     }
 }
