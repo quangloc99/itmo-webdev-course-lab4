@@ -10,3 +10,8 @@ mat-toolbar {
   max-width: 764px;
   margin: 0 auto;
 }
+
+::ng-deep mat-tab-header {
+  align-self: center;
+}
+
