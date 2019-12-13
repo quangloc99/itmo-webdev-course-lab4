@@ -5,3 +5,8 @@ mat-toolbar {
 .space-filler {
   flex: 1 1 auto;
 }
+
+.app-container {
+  max-width: 764px;
+  margin: 0 auto;
+}

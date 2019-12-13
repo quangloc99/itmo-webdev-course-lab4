@@ -7,7 +7,10 @@ import {MainAppComponent} from "./main-app/main-app.component";
 
 const appRouts: Routes = [
   { path: "", component: UserEntryComponent },
-  { path: "user-entry", component: UserEntryComponent },
+  {
+    path: "user-entry",
+    component: UserEntryComponent,
+  },
   { path: "main-app", component: MainAppComponent },
   // TODO 404 page
 ];

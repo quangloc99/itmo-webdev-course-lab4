@@ -7,7 +7,11 @@
 
 </mat-toolbar>
 
-<button routerLink="/user-entry">User entry test</button>
-<button routerLink="/main-app">Main app test</button>
+<button mat-button routerLink="/user-entry" skipLocationChange color="primary">User entry test</button>
+<button mat-button routerLink="/main-app" skipLocationChange color="primary">Main app test</button>
 
-<router-outlet></router-outlet>
+<mat-divider></mat-divider>
+
+<div class="app-container">
+  <router-outlet></router-outlet>
+</div>

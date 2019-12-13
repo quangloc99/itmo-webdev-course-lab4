@@ -1,0 +1,12 @@
+::ng-deep mat-tab-header {
+  align-self: center;
+}
+
+form {
+  padding: 0 30px;
+}
+
+form > mat-form-field {
+  width: 100%;
+}
+
