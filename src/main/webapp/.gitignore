@@ -1,0 +1,5 @@
+# all files in this folder are mostly compiled files
+*.js
+*.js.map
+*.html
+favicon.ico
