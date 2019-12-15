@@ -1,0 +1,15 @@
+<svg [attr.width]="domSize" [attr.height]="domSize" [attr.viewBox]="viewBox" >
+  <rect x="0" y="0" width="" height="" [attr.fill]="color"
+        [style.width.px]="displayingR / 2"
+        [style.height.px]="displayingR"
+  ></rect>
+  <circle cx="0" cy="0" r="" [attr.fill]="color" [style.r.px]="displayingR / 2"
+          clip-path="inset(50% 50% 0px 0px)"
+  ></circle>
+  <polygon points="0,0 1,0 0,-1" [attr.fill]="color"
+           [style.transformOrigin]="'top left'"
+           [style.transform]="'scale(' + displayingR + ')'"
+  ></polygon>
+  <line x1="0" x2="0" y1="-100" y2="100" stroke="black" stroke-width="2"></line>
+  <line y1="0" y2="0" x1="-100" x2="100" stroke="black" stroke-width="2"></line>
+</svg>

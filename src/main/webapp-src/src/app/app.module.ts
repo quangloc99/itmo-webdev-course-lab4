@@ -18,6 +18,7 @@ import { UserEntryComponent } from './user-entry/user-entry.component';
 import { MainAppComponent } from './main-app/main-app.component';
 import { InputFormComponent } from './main-app/input-form/input-form.component';
 import { InteractiveInputComponent } from './main-app/interactive-input/interactive-input.component';
+import { CheckingAreaPicComponent } from './checking-area-pic/checking-area-pic.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { InteractiveInputComponent } from './main-app/interactive-input/interact
     MainAppComponent,
     InputFormComponent,
     InteractiveInputComponent,
+    CheckingAreaPicComponent,
   ],
   imports: [
     BrowserModule,
