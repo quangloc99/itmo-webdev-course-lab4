@@ -1,4 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Point} from "../../helpers/utils";
 
 @Component({
   selector: 'app-checking-area-pic',
@@ -11,6 +12,8 @@ export class CheckingAreaPicComponent implements OnInit {
   @Input("parameter-r") parameterR: number = 3;
   @Input() color: string = "red";
 
+  @Output("user-coordinates-input") userCoordinatesInputEvent = new EventEmitter<Point>();
+
   displayingSize = 100;
 
   constructor() { }
@@ -20,6 +23,29 @@ export class CheckingAreaPicComponent implements OnInit {
     // setInterval(() => {
     //   this.parameterR += 0.5;
     // }, 1000);
+  }
+
+  onClick(event: Event) {
+    if (!(event instanceof MouseEvent)) {
+      return ;
+    }
+    const target = event.currentTarget;
+    if (target === null || !(target instanceof Element)) {
+      return ;
+    }
+    const rect = target.getBoundingClientRect();
+    this.userCoordinatesInputEvent.emit(this.domCoordinatesToParameter({
+      x: event.clientX - rect.left,
+      y: event.clientY - rect.top,
+    }));
+  }
+
+  private domCoordinatesToParameter({x, y}: Point): Point {
+    x -= this.domSize / 2;
+    y -= this.domSize / 2;
+    x *= this.relativeSize / this.domSize * 2;
+    y *= -1 * this.relativeSize / this.domSize * 2;
+    return {x, y};
   }
 
   get viewBox() {

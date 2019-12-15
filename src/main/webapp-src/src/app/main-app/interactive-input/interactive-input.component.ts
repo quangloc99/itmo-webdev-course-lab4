@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Point} from "../../../helpers/utils";
 
 @Component({
   selector: 'app-interactive-input',
@@ -10,6 +11,10 @@ export class InteractiveInputComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  logCoordinates(p: Point) {
+    console.log(p);
   }
 
 }

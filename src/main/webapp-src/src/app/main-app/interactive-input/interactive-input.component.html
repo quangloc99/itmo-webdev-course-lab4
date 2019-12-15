@@ -1,1 +1,3 @@
-<app-checking-area-pic></app-checking-area-pic>
+<app-checking-area-pic (user-coordinates-input)="logCoordinates($event)"
+                       [style.cursor]="'crosshair'"
+></app-checking-area-pic>
