@@ -10,6 +10,10 @@
            [style.transformOrigin]="'top left'"
            [style.transform]="'scale(' + displayingR + ')'"
   ></polygon>
-  <line x1="0" x2="0" y1="-100" y2="100" stroke="black" stroke-width="2"></line>
-  <line y1="0" y2="0" x1="-100" x2="100" stroke="black" stroke-width="2"></line>
+  <rect x="-0.5%" y="-50%" width="1%" height="100%" fill="black"></rect>
+  <rect x="-50%" y="-0.5%" width="100%" height="1%" fill="black"></rect>
+
+  <g [attr.transform]="'scale(' + displayingSize / relativeSize +')'">
+    <ng-content></ng-content>
+  </g>
 </svg>

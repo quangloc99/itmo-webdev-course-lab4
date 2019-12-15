@@ -14,6 +14,9 @@ export class CheckingAreaPicComponent implements OnInit {
 
   @Output("user-coordinates-input") userCoordinatesInputEvent = new EventEmitter<Point>();
 
+  // it is actually more convenient not to use this value
+  // but when the image is too small, the browser display it wrong
+  // for some reason like optimization.
   displayingSize = 100;
 
   constructor() { }

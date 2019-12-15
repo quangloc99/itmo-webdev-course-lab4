@@ -4,7 +4,9 @@
 
                          [parameter-r]="parameterR"
                          (user-coordinates-input)="logCoordinates($event)"
-  ></app-checking-area-pic><br>
+  >
+    <svg:circle cx="" cy="" [style.cx.px]="testX" [style.cy.px]="testY" [style.transition]="'all ease 0.25s'" fill="green" r="0.3" />
+  </app-checking-area-pic><br>
   R: <mat-slider [min]="inputFieldRanges.r.min" [max]="inputFieldRanges.r.max" [step]="0.01" thumbLabel
                  [(value)]="parameterR"
 ></mat-slider>
