@@ -3,5 +3,5 @@ svg {
 }
 
 svg > * {
-  transition: all ease-in-out 0.25s;
+  transition: all ease-out 0.25s;
 }

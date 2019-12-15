@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {Point} from "../../../helpers/utils";
+import {Component, Input, OnInit} from '@angular/core';
+import {FieldRanges, Point} from "../../../helpers/utils";
 
 @Component({
   selector: 'app-interactive-input',
@@ -7,6 +7,8 @@ import {Point} from "../../../helpers/utils";
   styleUrls: ['./interactive-input.component.css']
 })
 export class InteractiveInputComponent implements OnInit {
+  @Input() inputFieldRanges: FieldRanges;
+  parameterR: number = 3;
 
   constructor() { }
 
