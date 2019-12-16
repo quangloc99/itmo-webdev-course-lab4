@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {CheckingHitQuery} from "../../../helpers/utils";
+import {CheckingHitQuery, getCSSVariable} from "../../../helpers/utils";
 
 @Component({
   selector: 'app-result-table',
@@ -9,8 +9,9 @@ import {CheckingHitQuery} from "../../../helpers/utils";
 export class ResultTableComponent implements OnInit {
   @Input() data: CheckingHitQuery[];
   displayingColumns = ['show-button', 'x', 'y', 'r', 'result'];
+  private getCSSVariable = getCSSVariable;
 
-  selectedQuery: CheckingHitQuery = null;
+  private _selectedQuery: CheckingHitQuery = null;
 
   constructor() { }
 
@@ -19,7 +20,13 @@ export class ResultTableComponent implements OnInit {
 
   showRow(query: CheckingHitQuery) {
     console.log(query);
-    this.selectedQuery = query;
+    this._selectedQuery = query;
   }
 
+  get selectedQuery(): CheckingHitQuery {
+    if (this._selectedQuery === null) {
+      return { x: 0, y: 0, r: 0, result: false};
+    }
+    return this._selectedQuery;
+  }
 }

@@ -29,3 +29,6 @@ export function range(from: number, to: number, step: number = 1) {
   return ans;
 }
 
+export function getCSSVariable(name: string, elm = document.documentElement) {
+  return getComputedStyle(elm).getPropertyValue(name);
+}

@@ -1,3 +1,9 @@
+<app-checking-area-pic [parameter-r]="selectedQuery.r"
+                       [color]="selectedQuery.result ? getCSSVariable('--hit-color') : getCSSVariable('--not-hit-color')"
+>
+  <svg:circle [attr.cx]="selectedQuery.x" [attr.cy]="selectedQuery.y" r="0.3" fill="cyan" [style.transition]="'all ease 0.2s'"/>
+</app-checking-area-pic>
+
 <table mat-table [dataSource]="data">
   <ng-container matColumnDef="show-button">
     <th mat-header-cell *matHeaderCellDef></th>
@@ -30,6 +36,6 @@
 
   <tr mat-header-row *matHeaderRowDef="displayingColumns"></tr>
   <tr mat-row *matRowDef="let currentRow; columns: displayingColumns"
-      [ngClass]="this.selectedQuery?.id === currentRow.id ? 'selected' : ''">
+      [ngClass]="this._selectedQuery?.id === currentRow.id ? 'selected' : ''">
   </tr>
 </table>

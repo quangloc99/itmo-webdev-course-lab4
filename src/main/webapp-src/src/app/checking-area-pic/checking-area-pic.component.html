@@ -1,12 +1,12 @@
 <svg [attr.width]="domSize" [attr.height]="domSize" [attr.viewBox]="viewBox" (click)="onClick($event)">
-  <rect x="0" y="0" width="" height="" [attr.fill]="color"
+  <rect x="0" y="0" width="" height="" [style.fill]="color"
         [style.width.px]="displayingR / 2"
         [style.height.px]="displayingR"
   ></rect>
-  <circle cx="0" cy="0" r="" [attr.fill]="color" [style.r.px]="displayingR / 2"
+  <circle cx="0" cy="0" r="" [style.fill]="color" [style.r.px]="displayingR / 2"
           clip-path="inset(50% 50% 0px 0px)"
   ></circle>
-  <polygon points="0,0 1,0 0,-1" [attr.fill]="color"
+  <polygon points="0,0 1,0 0,-1" [style.fill]="color"
            [style.transformOrigin]="'top left'"
            [style.transform]="'scale(' + displayingR + ')'"
   ></polygon>

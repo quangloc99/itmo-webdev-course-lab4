@@ -21,7 +21,7 @@ tr.selected, tbody tr.selected:hover {
 }
 
 .result-box.hit {
-  background: #80c644;
+  background: var(--hit-color);
 }
 
 .result-box.hit:after {
@@ -29,7 +29,7 @@ tr.selected, tbody tr.selected:hover {
 }
 
 .result-box.not-hit {
-  background: #c6362e;
+  background: var(--not-hit-color);
 }
 
 .result-box.not-hit:after {
