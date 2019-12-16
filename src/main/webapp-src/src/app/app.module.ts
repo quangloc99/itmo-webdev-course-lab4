@@ -13,6 +13,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTable, MatTableModule} from '@angular/material/table';
+import {MatCardModule} from '@angular/material/card';
 
 import { AppRoutingModule } from './app-routing.module';
 import { UserEntryComponent } from './user-entry/user-entry.component';
@@ -45,6 +46,7 @@ import { ResultTableComponent } from './main-app/result-table/result-table.compo
     MatButtonModule,
     MatCheckboxModule,
     MatTableModule,
+    MatCardModule,
 
     AppRoutingModule,
   ],
