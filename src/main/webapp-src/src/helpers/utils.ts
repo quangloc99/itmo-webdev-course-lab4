@@ -1,3 +1,5 @@
+import {addScreenSizeListener} from "./screen-size-listener";
+
 export interface Range {
   min: number;
   max: number;
@@ -32,3 +34,5 @@ export function range(from: number, to: number, step: number = 1) {
 export function getCSSVariable(name: string, elm = document.documentElement) {
   return getComputedStyle(elm).getPropertyValue(name);
 }
+
+

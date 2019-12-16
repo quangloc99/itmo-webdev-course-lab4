@@ -1,15 +1,20 @@
 <br>
-<div class="container" *ngIf="inputFieldRanges">
+<div class="container align-center" *ngIf="inputFieldRanges" [style.flexDirection]="'column'">
   <app-checking-area-pic [parameter-size]="inputFieldRanges.r.max + 1"
                          [style.cursor]="'crosshair'"
+                         [dom-size]="pictureDomSize"
 
                          [parameter-r]="parameterR"
                          (user-coordinates-input)="logCoordinates($event)"
   >
   </app-checking-area-pic><br>
-  R: <mat-slider [min]="inputFieldRanges.r.min" [max]="inputFieldRanges.r.max" [step]="0.01" thumbLabel
-                 [(value)]="parameterR"
-></mat-slider>
+  <span>
+    R:
+    <mat-slider [min]="inputFieldRanges.r.min" [max]="inputFieldRanges.r.max" [step]="0.01" thumbLabel
+                   [(value)]="parameterR"
+
+    ></mat-slider>
+  </span>
 </div>
 
 

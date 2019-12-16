@@ -7,7 +7,7 @@ import {Point} from "../../helpers/utils";
   styleUrls: ['./checking-area-pic.component.css']
 })
 export class CheckingAreaPicComponent implements OnInit {
-  @Input("dom-size") domSize: number = 200;
+  @Input("dom-size") domSize: string = "200px";
   @Input("parameter-size") relativeSize: number = 5;
   @Input("parameter-r") parameterR: number = 3;
   @Input() color: string = "red";
@@ -40,14 +40,14 @@ export class CheckingAreaPicComponent implements OnInit {
     this.userCoordinatesInputEvent.emit(this.domCoordinatesToParameter({
       x: event.clientX - rect.left,
       y: event.clientY - rect.top,
-    }));
+    }, rect));
   }
 
-  private domCoordinatesToParameter({x, y}: Point): Point {
-    x -= this.domSize / 2;
-    y -= this.domSize / 2;
-    x *= this.relativeSize / this.domSize * 2;
-    y *= -1 * this.relativeSize / this.domSize * 2;
+  private domCoordinatesToParameter({x, y}: Point, rect: ClientRect | DOMRect): Point {
+    x -= rect.width / 2;
+    y -= rect.height / 2;
+    x *= this.relativeSize / rect.width * 2;
+    y *= -1 * this.relativeSize / rect.height * 2;
     return {x, y};
   }
 

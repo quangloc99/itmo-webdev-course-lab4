@@ -4,8 +4,8 @@ export interface ScreenSizeSplitter{
 }
 
 // this is when you realize you need adaptive/responsive design, but then you have a lot of components :p
-export function screenSizeListener(splitter: ScreenSizeSplitter[], callback: (screenName: string, oldScreenName) => void, immediate = true) {
-  splitter = splitter.splice(0).sort((lhs, rhs) => lhs.size - rhs.size);
+export function addScreenSizeListener(splitter: ScreenSizeSplitter[], callback: (screenName: string, oldScreenName) => void, immediate = true) {
+  splitter = [...splitter].sort((lhs, rhs) => lhs.size - rhs.size);
   let currentScreenName: string = null;
   function listener() {
     const w = window.innerWidth;
@@ -22,7 +22,11 @@ export function screenSizeListener(splitter: ScreenSizeSplitter[], callback: (sc
       currentScreenName = null;
     }
   }
-  window.addEventListener('resize', listener);
+  window.addEventListener('resize', listener, false);
   if (immediate) listener();
   return listener;
+}
+
+export function removeScreenSizeListener(listener) {
+  window.removeEventListener('resize', listener);
 }
