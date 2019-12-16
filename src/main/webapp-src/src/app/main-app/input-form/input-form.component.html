@@ -1,8 +1,11 @@
+<br>
 <form *ngIf="inputFieldRanges">
-  X:
-  <span *ngFor="let val of range(inputFieldRanges.x.min, inputFieldRanges.x.max + 1, inputFieldRanges.x.step)">
-    <mat-checkbox>{{val}}</mat-checkbox>
-  </span> <br>
+  <span class="checkbox-container" [style.width.%]="100">
+    X <div class="spacer"></div>
+    <mat-checkbox *ngFor="let val of range(inputFieldRanges.x.min, inputFieldRanges.x.max + 1, inputFieldRanges.x.step)">
+      {{val}}
+    </mat-checkbox>
+  </span>
   <mat-form-field>
     <input matInput placeholder="Y (number between {{inputFieldRanges.y.min}} and {{inputFieldRanges.y.max}})"
            type="number"
@@ -11,10 +14,12 @@
            step="any"
     />
   </mat-form-field>
-  R:
-  <br>
-  <span *ngFor="let val of range(inputFieldRanges.r.min, inputFieldRanges.r.max + 1, inputFieldRanges.r.step)">
-    <mat-checkbox>{{val}}</mat-checkbox>
+
+  <span class="checkbox-container" [style.width.%]="100">
+    R <div class="spacer"></div>
+    <mat-checkbox  *ngFor="let val of range(inputFieldRanges.r.min, inputFieldRanges.r.max + 1, inputFieldRanges.r.step)">
+      {{val}}
+    </mat-checkbox>
   </span> <br>
 
   <button mat-button type="submit" color="primary">Submit</button>

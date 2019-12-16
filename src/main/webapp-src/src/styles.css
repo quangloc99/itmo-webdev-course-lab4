@@ -1,10 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 :root {
   --hit-color: #80c644;
   --not-hit-color: #c6362e;
 }
 
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.spacer {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

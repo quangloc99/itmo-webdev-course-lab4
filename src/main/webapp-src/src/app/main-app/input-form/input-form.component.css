@@ -1,0 +1,11 @@
+.checkbox-container {
+  display: flex;
+}
+
+:host-context(.mobile) .checkbox-container {
+  display: block;
+}
+
+.checkbox-container > * {
+  margin-right: 10px;
+}
