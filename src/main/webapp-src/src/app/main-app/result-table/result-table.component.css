@@ -1,0 +1,38 @@
+table {
+  width: 100%;
+}
+
+tr {
+  transition: background ease 0.2s;
+}
+
+tr:hover {
+  background: #e5e5e5;
+}
+
+tr.selected, tbody tr.selected:hover {
+  background: #c1e8f0;
+}
+
+.result-box {
+  border-radius: 3px;
+  display: inline;
+  padding: 0 4px;
+}
+
+.result-box.hit {
+  background: #80c644;
+}
+
+.result-box.hit:after {
+  content: "Hit";
+}
+
+.result-box.not-hit {
+  background: #c6362e;
+}
+
+.result-box.not-hit:after {
+  content: "Not hit";
+}
+

@@ -8,6 +8,14 @@ export interface FieldRanges {
   [key: string]: Range;
 }
 
+export interface CheckingHitQuery {
+  id?: number;
+  x: number;
+  y: number;
+  r: number;
+  result: boolean;
+}
+
 export interface Point {
   x: number;
   y: number;

@@ -10,9 +10,6 @@ export class InteractiveInputComponent implements OnInit {
   @Input() inputFieldRanges: FieldRanges;
   parameterR: number = 3;
 
-  testX: number = 0;
-  testY: number = 0;
-
   constructor() { }
 
   ngOnInit() {
@@ -20,8 +17,6 @@ export class InteractiveInputComponent implements OnInit {
 
   logCoordinates(p: Point) {
     console.log(p);
-    this.testX = p.x;
-    this.testY = p.y;
   }
 
 }

@@ -12,6 +12,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatTable, MatTableModule} from '@angular/material/table';
 
 import { AppRoutingModule } from './app-routing.module';
 import { UserEntryComponent } from './user-entry/user-entry.component';
@@ -19,6 +20,7 @@ import { MainAppComponent } from './main-app/main-app.component';
 import { InputFormComponent } from './main-app/input-form/input-form.component';
 import { InteractiveInputComponent } from './main-app/interactive-input/interactive-input.component';
 import { CheckingAreaPicComponent } from './checking-area-pic/checking-area-pic.component';
+import { ResultTableComponent } from './main-app/result-table/result-table.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { CheckingAreaPicComponent } from './checking-area-pic/checking-area-pic.
     InputFormComponent,
     InteractiveInputComponent,
     CheckingAreaPicComponent,
+    ResultTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +44,7 @@ import { CheckingAreaPicComponent } from './checking-area-pic/checking-area-pic.
     MatTabsModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatTableModule,
 
     AppRoutingModule,
   ],
