@@ -1,3 +1,23 @@
+:host {
+  display: flex;
+  overflow: auto;
+:}
+
+:host-context(.mobile) {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.table-container {
+  flex-grow: 1;
+  max-height: 600px;
+  overflow: auto;
+}
+
+:host-context(.mobile) .table-container {
+  max-height: 300px;
+}
+
 table {
   width: 100%;
 }
