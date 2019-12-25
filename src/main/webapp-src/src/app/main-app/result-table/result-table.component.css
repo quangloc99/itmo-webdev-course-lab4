@@ -1,7 +1,8 @@
 :host {
   display: flex;
-  overflow: auto;
-:}
+  /*overflow: auto;*/
+  /*position: sticky;*/
+}
 
 :host-context(.mobile) {
   flex-direction: column;
@@ -10,12 +11,6 @@
 
 .table-container {
   flex-grow: 1;
-  max-height: 600px;
-  overflow: auto;
-}
-
-:host-context(.mobile) .table-container {
-  max-height: 300px;
 }
 
 table {
