@@ -9,6 +9,10 @@
   justify-content: center;
 }
 
+#area-pic {
+  background: white;
+}
+
 .table-container {
   flex-grow: 1;
 }
@@ -49,5 +53,29 @@ tr.selected, tbody tr.selected:hover {
 
 .result-box.not-hit:after {
   content: "Not hit";
+}
+
+:host-context(.mobile) .header-cell {
+  top: var(--area-pic-height) !important;  /* sadly that I need to override the value set by angular */
+}
+
+#area-pic {
+  height: var(--area-pic-height);
+  width: var(--area-pic-height);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+:host-context(.mobile) #area-pic {
+  width: 100%;
+}
+
+:host {
+  --area-pic-height: 300px;
+}
+
+:host-context(.mobile) {
+  --area-pic-height: 200px;
 }
 
