@@ -14,12 +14,14 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTable, MatTableModule} from '@angular/material/table';
 import {MatCardModule} from '@angular/material/card';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { UserEntryComponent } from './user-entry/user-entry.component';
 import { MainAppComponent } from './main-app/main-app.component';
 import { InputFormComponent } from './main-app/input-form/input-form.component';
 import { InteractiveInputComponent } from './main-app/interactive-input/interactive-input.component';
+import { AddQueryDialogComponent } from './main-app/add-query-dialog/add-query-dialog.component';
 import { CheckingAreaPicComponent } from './checking-area-pic/checking-area-pic.component';
 
 @NgModule({
@@ -30,6 +32,7 @@ import { CheckingAreaPicComponent } from './checking-area-pic/checking-area-pic.
     InputFormComponent,
     InteractiveInputComponent,
     CheckingAreaPicComponent,
+    AddQueryDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,8 +48,12 @@ import { CheckingAreaPicComponent } from './checking-area-pic/checking-area-pic.
     MatCheckboxModule,
     MatTableModule,
     MatCardModule,
+    MatDialogModule,
 
     AppRoutingModule,
+  ],
+  entryComponents: [
+    AddQueryDialogComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

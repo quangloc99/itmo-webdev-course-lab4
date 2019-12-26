@@ -8,24 +8,14 @@ import {CHECKING_AREA_PIC_SIZE, SCREEN_SIZE_SPLITTER} from "../../../helpers/con
   templateUrl: './interactive-input.component.html',
   styleUrls: ['./interactive-input.component.css']
 })
-export class InteractiveInputComponent implements OnInit, OnDestroy {
+export class InteractiveInputComponent implements OnInit {
   @Input() inputFieldRanges: FieldRanges;
   parameterR: number = 3;
   private pictureDomSize: string = "200px";
-  private screenSizeListener;
 
   constructor() { }
 
   ngOnInit() {
-    this.screenSizeListener = addScreenSizeListener(SCREEN_SIZE_SPLITTER, (environment) => {
-      if (!environment) return ;
-      console.log(CHECKING_AREA_PIC_SIZE[environment]);
-      this.pictureDomSize = CHECKING_AREA_PIC_SIZE[environment];
-    });
-  }
-
-  ngOnDestroy(): void {
-    removeScreenSizeListener(this.screenSizeListener);
   }
 
   logCoordinates(p: Point) {

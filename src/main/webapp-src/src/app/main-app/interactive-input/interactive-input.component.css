@@ -1,3 +1,16 @@
 .container > * {
   margin: 0 auto;
 }
+
+#pic {
+  width: var(--pic-size);
+  height: var(--pic-size);
+}
+
+:host {
+  --pic-size: 350px;
+}
+
+:host-context(.mobile) {
+  --pic-size: 200px;
+}

@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Add new queries</h1>
+<div mat-dialog-content>
+  <mat-tab-group>
+    <mat-tab label="Input form">
+      <app-input-form [inputFieldRanges]="dialogData.inputFieldRanges"></app-input-form>
+
+      <button mat-raised-button color="primary" [mat-dialog-close]="'add from form'">Submit</button>
+      <button mat-button color="primary" [mat-dialog-close]="">Cancel</button>
+    </mat-tab>
+    <mat-tab label="Interactive input">
+      <app-interactive-input [inputFieldRanges]="dialogData.inputFieldRanges"></app-interactive-input>
+
+      <button mat-button color="primary" [mat-dialog-close]="">Cancel</button>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+

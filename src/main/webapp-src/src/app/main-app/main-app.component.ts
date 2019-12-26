@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {CheckingHitQuery, FieldRanges, getCSSVariable} from "../../helpers/utils";
+import {MatDialog} from "@angular/material/dialog";
+import {AddQueryDialogComponent} from "./add-query-dialog/add-query-dialog.component";
 
 @Component({
   selector: 'app-main-app',
@@ -30,8 +32,9 @@ export class MainAppComponent implements OnInit {
   ];
 
   data: CheckingHitQuery[] = this.testData;
+  addQueryDialog;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.http.get("assets/input-field-ranges.json").subscribe((data) =>
@@ -48,6 +51,15 @@ export class MainAppComponent implements OnInit {
   showRow(query: CheckingHitQuery) {
     console.log(query);
     this._selectedQuery = query;
+  }
+
+  showAddQueryDialog() {
+    this.addQueryDialog = this.dialog.open(AddQueryDialogComponent, {
+      data: { inputFieldRanges: this.inputFieldRanges }
+    });
+    this.addQueryDialog.afterClosed().subscribe((res) => {
+      console.log(res);
+    });
   }
 
   get selectedQuery(): CheckingHitQuery {

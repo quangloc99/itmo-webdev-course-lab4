@@ -1,9 +1,9 @@
 <br>
 <div class="container align-center" *ngIf="inputFieldRanges" [style.flexDirection]="'column'">
-  <app-checking-area-pic [parameter-size]="inputFieldRanges.r.max + 1"
+  <app-checking-area-pic id="pic"
+                         [parameter-size]="inputFieldRanges.r.max + 1"
                          [style.cursor]="'crosshair'"
-                         [dom-size]="pictureDomSize"
-
+                         [dom-size]="'100%'"
                          [parameter-r]="parameterR"
                          (user-coordinates-input)="logCoordinates($event)"
   >
