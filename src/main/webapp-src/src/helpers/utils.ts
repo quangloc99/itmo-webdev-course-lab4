@@ -16,7 +16,7 @@ export interface CheckingHitQuery {
   x: number;
   y: number;
   r: number;
-  result: boolean;
+  result?: boolean;
 }
 
 export interface Point {

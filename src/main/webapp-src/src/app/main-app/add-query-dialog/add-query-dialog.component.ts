@@ -1,6 +1,7 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {FieldRanges} from "../../../helpers/utils";
+import {InputFormComponent} from "../input-form/input-form.component";
 
 interface DialogData {
   inputFieldRanges: FieldRanges;
@@ -12,6 +13,8 @@ interface DialogData {
   styleUrls: ['./add-query-dialog.component.css']
 })
 export class AddQueryDialogComponent implements OnInit {
+  @ViewChild("inputForm", undefined)
+  private inputForm: InputFormComponent;
 
   constructor(
     public dialog: MatDialogRef<AddQueryDialogComponent>,

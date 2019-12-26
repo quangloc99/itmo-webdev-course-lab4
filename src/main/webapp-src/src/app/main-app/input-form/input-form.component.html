@@ -2,7 +2,9 @@
 <form *ngIf="inputFieldRanges" (submit)="onSubmit($event)">
   <span class="checkbox-container" [style.width.%]="100">
     X <div class="spacer"></div>
-    <mat-checkbox *ngFor="let val of range(inputFieldRanges.x.min, inputFieldRanges.x.max + 1, inputFieldRanges.x.step)">
+    <mat-checkbox *ngFor="let val of range(inputFieldRanges.x.min, inputFieldRanges.x.max + 1, inputFieldRanges.x.step)"
+                  (change)="xValues.set(val, $event.checked)"
+    >
       {{val}}
     </mat-checkbox>
   </span>
@@ -24,7 +26,9 @@
 
   <span class="checkbox-container" [style.width.%]="100">
     R <div class="spacer"></div>
-    <mat-checkbox  *ngFor="let val of range(inputFieldRanges.r.min, inputFieldRanges.r.max + 1, inputFieldRanges.r.step)">
+    <mat-checkbox *ngFor="let val of range(inputFieldRanges.r.min, inputFieldRanges.r.max + 1, inputFieldRanges.r.step)"
+                  (change)="rValues.set(val, $event.checked)"
+    >
       {{val}}
     </mat-checkbox>
   </span> <br>

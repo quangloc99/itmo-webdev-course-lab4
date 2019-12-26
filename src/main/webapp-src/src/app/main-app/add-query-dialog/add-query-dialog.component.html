@@ -2,9 +2,14 @@
 <div mat-dialog-content>
   <mat-tab-group>
     <mat-tab label="Input form">
-      <app-input-form [inputFieldRanges]="dialogData.inputFieldRanges"></app-input-form>
+      <app-input-form [inputFieldRanges]="dialogData.inputFieldRanges" #inputForm></app-input-form>
 
-      <button mat-raised-button color="primary" [mat-dialog-close]="'add from form'">Submit</button>
+      <button mat-raised-button color="primary"
+              [mat-dialog-close]="inputForm.generateQueries()"
+              [disabled]="inputForm.hasError()"
+      >
+        Adding {{ inputForm.getNumberOfQueries() }} query(es).
+      </button>
       <button mat-button color="primary" [mat-dialog-close]="">Cancel</button>
     </mat-tab>
     <mat-tab label="Interactive input">

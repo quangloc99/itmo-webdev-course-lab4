@@ -24,6 +24,7 @@ import { InputFormComponent } from './main-app/input-form/input-form.component';
 import { InteractiveInputComponent } from './main-app/interactive-input/interactive-input.component';
 import { AddQueryDialogComponent } from './main-app/add-query-dialog/add-query-dialog.component';
 import { CheckingAreaPicComponent } from './checking-area-pic/checking-area-pic.component';
+import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -58,7 +59,9 @@ import { CheckingAreaPicComponent } from './checking-area-pic/checking-area-pic.
   entryComponents: [
     AddQueryDialogComponent,
   ],
-  providers: [],
+  providers: [
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
