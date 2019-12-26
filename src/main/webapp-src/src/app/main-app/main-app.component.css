@@ -2,21 +2,39 @@
   display: flex;
 }
 
+:host > * {
+  margin-left: 16px;
+}
+
+:host > :last-child {
+  margin-right: 16px;
+}
+
+:host-context(.mobile) > * {
+  margin: 0;
+}
+
 :host-context(.mobile) {
   flex-direction: column;
   justify-content: center;
 }
 
-#area-pic {
-  background: white;
-}
-
 .table-container {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 table {
   width: 100%;
+}
+
+#add-query-button {
+  position: sticky;
+  bottom: 10px;
+  margin-top: 20px;
+  z-index: 100;
 }
 
 tr {
@@ -54,15 +72,16 @@ tr.selected, tbody tr.selected:hover {
 }
 
 :host-context(.mobile) .header-cell {
-  top: var(--area-pic-height) !important;  /* sadly that I need to override the value set by angular */
+  top: calc(var(--area-pic-height) + var(--card-padding) * 2) !important;  /* sadly that I need to override the value set by angular */
 }
 
 #area-pic {
   height: var(--area-pic-height);
   width: var(--area-pic-height);
+  padding: var(--card-padding);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 200;
 }
 
 :host-context(.mobile) #area-pic {
@@ -71,6 +90,7 @@ tr.selected, tbody tr.selected:hover {
 
 :host {
   --area-pic-height: 300px;
+  --card-padding: 16px;
 }
 
 :host-context(.mobile) {
