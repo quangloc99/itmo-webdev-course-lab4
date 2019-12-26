@@ -13,7 +13,12 @@
       <button mat-button color="primary" [mat-dialog-close]="">Cancel</button>
     </mat-tab>
     <mat-tab label="Interactive input">
-      <app-interactive-input [inputFieldRanges]="dialogData.inputFieldRanges"></app-interactive-input>
+      <div class="align-center">
+        Click to add 1 new query.
+      </div>
+      <app-interactive-input [inputFieldRanges]="dialogData.inputFieldRanges"
+                             (new-query)="dialog.close([$event])"
+      ></app-interactive-input>
 
       <button mat-button color="primary" [mat-dialog-close]="">Cancel</button>
     </mat-tab>

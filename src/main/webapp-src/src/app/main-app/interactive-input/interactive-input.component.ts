@@ -1,5 +1,5 @@
-import {Component, Input, OnInit, OnDestroy} from '@angular/core';
-import {FieldRanges, Point} from "../../../helpers/utils";
+import {Component, Input, OnInit, OnDestroy, EventEmitter, Output} from '@angular/core';
+import {CheckingHitQuery, FieldRanges, Point} from "../../../helpers/utils";
 import {addScreenSizeListener, removeScreenSizeListener} from "../../../helpers/screen-size-listener";
 import {CHECKING_AREA_PIC_SIZE, SCREEN_SIZE_SPLITTER} from "../../../helpers/config";
 
@@ -9,7 +9,9 @@ import {CHECKING_AREA_PIC_SIZE, SCREEN_SIZE_SPLITTER} from "../../../helpers/con
   styleUrls: ['./interactive-input.component.css']
 })
 export class InteractiveInputComponent implements OnInit {
+  private assign = Object.assign;
   @Input() inputFieldRanges: FieldRanges;
+  @Output('new-query') onClickEventEmitter = new EventEmitter<CheckingHitQuery>();
   parameterR: number = 3;
   private pictureDomSize: string = "200px";
 
@@ -17,9 +19,4 @@ export class InteractiveInputComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  logCoordinates(p: Point) {
-    console.log(p);
-  }
-
 }

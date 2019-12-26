@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {FieldRanges} from "../../../helpers/utils";
+import {CheckingHitQuery, FieldRanges} from "../../../helpers/utils";
 import {InputFormComponent} from "../input-form/input-form.component";
 
 interface DialogData {

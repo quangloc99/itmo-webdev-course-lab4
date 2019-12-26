@@ -5,7 +5,7 @@
                          [style.cursor]="'crosshair'"
                          [dom-size]="'100%'"
                          [parameter-r]="parameterR"
-                         (user-coordinates-input)="logCoordinates($event)"
+                         (user-coordinates-input)="onClickEventEmitter.emit({x: $event.x, y: $event.y, r: +parameterR})"
   >
   </app-checking-area-pic><br>
   <span>
