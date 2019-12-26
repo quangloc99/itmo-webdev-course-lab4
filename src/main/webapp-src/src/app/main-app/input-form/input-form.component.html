@@ -1,18 +1,25 @@
 <br>
-<form *ngIf="inputFieldRanges">
+<form *ngIf="inputFieldRanges" (submit)="onSubmit($event)">
   <span class="checkbox-container" [style.width.%]="100">
     X <div class="spacer"></div>
     <mat-checkbox *ngFor="let val of range(inputFieldRanges.x.min, inputFieldRanges.x.max + 1, inputFieldRanges.x.step)">
       {{val}}
     </mat-checkbox>
   </span>
-  <mat-form-field>
+  <mat-form-field [style.margin]="'20px 0'">
     <input matInput placeholder="Y (number between {{inputFieldRanges.y.min}} and {{inputFieldRanges.y.max}})"
-           type="number"
-           [min]="inputFieldRanges.y.min"
-           [max]="inputFieldRanges.y.max"
-           step="any"
+           [formControl]="yFormControl"
+           autocomplete="off"
     />
+    <mat-error *ngIf="yFormControl.hasError('NaN')">
+      Must be a number (with a comma or period separator).
+    </mat-error>
+    <mat-error *ngIf="yFormControl.hasError('min') || yFormControl.hasError('max')">
+      Value is out of range.
+    </mat-error>
+    <mat-error *ngIf="!yFormControl.hasError('NaN') && yFormControl.hasError('maxlength')">
+      The precision is too big.
+    </mat-error>
   </mat-form-field>
 
   <span class="checkbox-container" [style.width.%]="100">
