@@ -37,7 +37,7 @@ export class MainAppComponent implements OnInit {
   constructor(private http: HttpClient, private dialog: MatDialog) { }
 
   ngOnInit() {
-    this.http.get("assets/input-field-ranges.json").subscribe((data) =>
+    this.http.get("./assets/input-field-ranges.json").subscribe((data) =>
       this.inputFieldRanges = data as FieldRanges
     );
   }

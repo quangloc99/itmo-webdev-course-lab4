@@ -1,11 +1,13 @@
+import {environment} from "../environments/environment";
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from "@angular/material/core";
 import {MatSliderModule} from '@angular/material/slider';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatInputModule} from '@angular/material/input';
@@ -24,7 +26,7 @@ import { InputFormComponent } from './main-app/input-form/input-form.component';
 import { InteractiveInputComponent } from './main-app/interactive-input/interactive-input.component';
 import { AddQueryDialogComponent } from './main-app/add-query-dialog/add-query-dialog.component';
 import { CheckingAreaPicComponent } from './checking-area-pic/checking-area-pic.component';
-import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from "@angular/material/core";
+import {BaseUrlHttpInceptor} from "./BaseUrlHttpInceptor";
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from "@angular/material
     AddQueryDialogComponent,
   ],
   providers: [
-    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
+    {provide: 'APP_BASE_URL', useValue: environment.baseUrl},
+    {provide: HTTP_INTERCEPTORS, useClass: BaseUrlHttpInceptor, multi: true},
   ],
   bootstrap: [AppComponent]
 })

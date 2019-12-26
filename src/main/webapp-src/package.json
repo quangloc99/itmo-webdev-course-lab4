@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-watch": "ng build --watch --base-href=\"\" --deployUrl=\"\""
+    "build-watch": "ng build --watch --base-href=\"/pip-lab4\" --deployUrl=\"/pip-lab4/\""
   },
   "private": true,
   "dependencies": {
