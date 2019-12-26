@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {CheckingHitQuery, FieldRanges} from "../../helpers/utils";
+import {CheckingHitQuery, FieldRanges, getCSSVariable} from "../../helpers/utils";
 
 @Component({
   selector: 'app-main-app',
@@ -29,6 +29,8 @@ export class MainAppComponent implements OnInit {
     {id: 4, x: -5, y: -3, r: 5, result: true},
   ];
 
+  data: CheckingHitQuery[] = this.testData;
+
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -37,4 +39,21 @@ export class MainAppComponent implements OnInit {
     );
   }
 
+
+  displayingColumns = ['show-button', 'x', 'y', 'r', 'result'];
+  private getCSSVariable = getCSSVariable;
+
+  private _selectedQuery: CheckingHitQuery = null;
+
+  showRow(query: CheckingHitQuery) {
+    console.log(query);
+    this._selectedQuery = query;
+  }
+
+  get selectedQuery(): CheckingHitQuery {
+    if (this._selectedQuery === null) {
+      return { x: 0, y: 0, r: 0, result: false};
+    }
+    return this._selectedQuery;
+  }
 }

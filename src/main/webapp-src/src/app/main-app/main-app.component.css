@@ -1,3 +1,79 @@
 :host {
-  /*position: sticky;*/
+  display: flex;
 }
+
+:host-context(.mobile) {
+  flex-direction: column;
+  justify-content: center;
+}
+
+#area-pic {
+  background: white;
+}
+
+.table-container {
+  flex-grow: 1;
+}
+
+table {
+  width: 100%;
+}
+
+tr {
+  transition: background ease 0.2s;
+}
+
+tr:hover {
+  background: #e5e5e5;
+}
+
+tr.selected, tbody tr.selected:hover {
+  background: #c1e8f0;
+}
+
+.result-box {
+  border-radius: 3px;
+  display: inline;
+  padding: 0 4px;
+}
+
+.result-box.hit {
+  background: var(--hit-color);
+}
+
+.result-box.hit:after {
+  content: "Hit";
+}
+
+.result-box.not-hit {
+  background: var(--not-hit-color);
+}
+
+.result-box.not-hit:after {
+  content: "Not hit";
+}
+
+:host-context(.mobile) .header-cell {
+  top: var(--area-pic-height) !important;  /* sadly that I need to override the value set by angular */
+}
+
+#area-pic {
+  height: var(--area-pic-height);
+  width: var(--area-pic-height);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+:host-context(.mobile) #area-pic {
+  width: 100%;
+}
+
+:host {
+  --area-pic-height: 300px;
+}
+
+:host-context(.mobile) {
+  --area-pic-height: 200px;
+}
+

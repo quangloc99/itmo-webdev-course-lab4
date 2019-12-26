@@ -21,7 +21,6 @@ import { MainAppComponent } from './main-app/main-app.component';
 import { InputFormComponent } from './main-app/input-form/input-form.component';
 import { InteractiveInputComponent } from './main-app/interactive-input/interactive-input.component';
 import { CheckingAreaPicComponent } from './checking-area-pic/checking-area-pic.component';
-import { ResultTableComponent } from './main-app/result-table/result-table.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +30,6 @@ import { ResultTableComponent } from './main-app/result-table/result-table.compo
     InputFormComponent,
     InteractiveInputComponent,
     CheckingAreaPicComponent,
-    ResultTableComponent,
   ],
   imports: [
     BrowserModule,
