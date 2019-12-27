@@ -4,61 +4,63 @@
 
 </mat-toolbar>
 
-<mat-card [style.marginTop.px]="20">
-  <mat-tab-group mat="center">
-    <mat-tab label="Login">
-      <form (submit)="doLogin()">
-        <mat-form-field>
-          <input matInput placeholder="Email" type="email" [formControl]="emailControl" [value]="emailControl.value"/>
-          <mat-error *ngIf="emailControl.hasError('email')">
-            Must be an email.
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="password"
-                 type="password"
-                 [formControl]="passwordControl"
-                 [value]="passwordControl.value"
-                 (input)="confirmPasswordControl.updateValueAndValidity({onlySelf: true, emitEvent: false})"
-          />
-          <mat-error *ngIf="passwordControl.hasError('minlength')">
-            Password is too short.
-          </mat-error>
-        </mat-form-field>
+<div id="content">
+  <mat-card [style.marginTop.px]="20">
+    <mat-tab-group mat="center">
+      <mat-tab label="Login">
+        <form (submit)="doLogin()">
+          <mat-form-field>
+            <input matInput placeholder="Email" type="email" [formControl]="emailControl" [value]="emailControl.value"/>
+            <mat-error *ngIf="emailControl.hasError('email')">
+              Must be an email.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="password"
+                   type="password"
+                   [formControl]="passwordControl"
+                   [value]="passwordControl.value"
+                   (input)="confirmPasswordControl.updateValueAndValidity({onlySelf: true, emitEvent: false})"
+            />
+            <mat-error *ngIf="passwordControl.hasError('minlength')">
+              Password is too short.
+            </mat-error>
+          </mat-form-field>
 
-        <button mat-raised-button color="primary" type="submit" [disabled]="submitting || hasLoginValidationError()">Login</button>
-      </form>
+          <button mat-raised-button color="primary" type="submit" [disabled]="submitting || hasLoginValidationError()">Login</button>
+        </form>
 
-    </mat-tab>
+      </mat-tab>
 
-    <mat-tab label="Register">
-      <form (submit)="doRegister()">
-        <mat-form-field>
-          <input matInput placeholder="Email" type="email" [formControl]="emailControl" [value]="emailControl.value"/>
-          <mat-error *ngIf="emailControl.hasError('email')">
-            Must be an email.
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Password"
-                 type="password"
-                 [formControl]="passwordControl"
-                 [value]="passwordControl.value"
-                 (input)="confirmPasswordControl.updateValueAndValidity({onlySelf: true, emitEvent: false})"
-          />
-          <mat-error *ngIf="passwordControl.hasError('minlength')">
-            Password is too short.
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Re-enter password" type="password" [formControl]="confirmPasswordControl" />
-          <mat-error *ngIf="confirmPasswordControl.hasError('unmatch-confirm-password')">
-            Confirm password is not matched.
-          </mat-error>
-        </mat-form-field>
+      <mat-tab label="Register">
+        <form (submit)="doRegister()">
+          <mat-form-field>
+            <input matInput placeholder="Email" type="email" [formControl]="emailControl" [value]="emailControl.value"/>
+            <mat-error *ngIf="emailControl.hasError('email')">
+              Must be an email.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Password"
+                   type="password"
+                   [formControl]="passwordControl"
+                   [value]="passwordControl.value"
+                   (input)="confirmPasswordControl.updateValueAndValidity({onlySelf: true, emitEvent: false})"
+            />
+            <mat-error *ngIf="passwordControl.hasError('minlength')">
+              Password is too short.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Re-enter password" type="password" [formControl]="confirmPasswordControl" />
+            <mat-error *ngIf="confirmPasswordControl.hasError('unmatch-confirm-password')">
+              Confirm password is not matched.
+            </mat-error>
+          </mat-form-field>
 
-        <button mat-raised-button color="primary" type="submit" [disabled]="submitting || hasRegisterValidationError()">Register</button>
-      </form>
-    </mat-tab>
-  </mat-tab-group>
-</mat-card>
+          <button mat-raised-button color="primary" type="submit" [disabled]="submitting || hasRegisterValidationError()">Register</button>
+        </form>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
+</div>
