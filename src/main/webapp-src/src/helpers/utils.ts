@@ -24,6 +24,11 @@ export interface Point {
   y: number;
 }
 
+export interface ApiJSONResponse {
+  status: "SUCCESS" | "FAIL",
+  message?: string
+}
+
 export type DynamicValue<T> = (() => T) | Observable<T> | T;
 export function valueGetter<T>(dynamicValue: DynamicValue<T>) : (() => T | null) {
   if (dynamicValue instanceof Observable) {
@@ -52,5 +57,13 @@ export function getCSSVariable(name: string, elm = document.documentElement) {
 
 export function numberValueWithComma(val: string) {
   return Number(val.replace(',', '.'));
+}
+
+export function encodeFormData(formData: any) {
+  const res = [];
+  for (const [key, value] of Object.entries(formData)) {
+    res.push(`${encodeURIComponent(key)}=${encodeURIComponent(value.toString())}`);
+  }
+  return res.join('&');
 }
 

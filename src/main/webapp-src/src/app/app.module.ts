@@ -18,6 +18,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTable, MatTableModule} from '@angular/material/table';
 import {MatCardModule} from '@angular/material/card';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/material/snack-bar";
 
 import { AppRoutingModule } from './app-routing.module';
 import { UserEntryComponent } from './user-entry/user-entry.component';
@@ -55,6 +56,7 @@ import {BaseUrlHttpInceptor} from "./BaseUrlHttpInceptor";
     MatTableModule,
     MatCardModule,
     MatDialogModule,
+    MatSnackBarModule,
 
     AppRoutingModule,
   ],
@@ -65,6 +67,7 @@ import {BaseUrlHttpInceptor} from "./BaseUrlHttpInceptor";
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
     {provide: 'APP_BASE_URL', useValue: environment.baseUrl},
     {provide: HTTP_INTERCEPTORS, useClass: BaseUrlHttpInceptor, multi: true},
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2000, verticalPosition: 'top'}},
   ],
   bootstrap: [AppComponent]
 })
