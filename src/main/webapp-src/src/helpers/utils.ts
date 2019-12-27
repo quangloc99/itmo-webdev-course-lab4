@@ -26,7 +26,8 @@ export interface Point {
 
 export interface ApiJSONResponse {
   status: "SUCCESS" | "FAIL",
-  message?: string
+  message?: string,
+  result?: any
 }
 
 export type DynamicValue<T> = (() => T) | Observable<T> | T;

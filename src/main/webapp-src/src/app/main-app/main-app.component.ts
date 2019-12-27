@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {CheckingHitQuery, FieldRanges, getCSSVariable} from "../../helpers/utils";
+import {ApiJSONResponse, CheckingHitQuery, encodeFormData, FieldRanges, getCSSVariable} from "../../helpers/utils";
 import {MatDialog} from "@angular/material/dialog";
 import {AddQueryDialogComponent} from "./add-query-dialog/add-query-dialog.component";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {of, onErrorResumeNext} from "rxjs";
+import {concatAll, map} from "rxjs/operators";
+import {MatTable} from "@angular/material/table";
 
 @Component({
   selector: 'app-main-app',
@@ -12,30 +15,15 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   styleUrls: ['./main-app.component.css']
 })
 export class MainAppComponent implements OnInit {
-  isLoggingOut= false;
+  @ViewChild('checkingHitQueriesTable', null)
+  checkingHitQueriesTable: MatTable<CheckingHitQuery>;
+  userEmail: string;
+  data: CheckingHitQuery[];
+
   inputFieldRanges: FieldRanges;
 
-  testData: CheckingHitQuery[] = [
-    {id: 1, x: 1, y: 2, r: 3, result: true},
-    {id: 2, x: -1, y: 2, r: 4, result: false},
-    {id: 3, x: 3, y: -2, r: 2, result: false},
-    {id: 4, x: -5, y: -3, r: 5, result: true},
-    {id: 1, x: 1, y: 2, r: 3, result: true},
-    {id: 2, x: -1, y: 2, r: 4, result: false},
-    {id: 3, x: 3, y: -2, r: 2, result: false},
-    {id: 4, x: -5, y: -3, r: 5, result: true},
-    {id: 1, x: 1, y: 2, r: 3, result: true},
-    {id: 2, x: -1, y: 2, r: 4, result: false},
-    {id: 3, x: 3, y: -2, r: 2, result: false},
-    {id: 4, x: -5, y: -3, r: 5, result: true},
-    {id: 1, x: 1, y: 2, r: 3, result: true},
-    {id: 2, x: -1, y: 2, r: 4, result: false},
-    {id: 3, x: 3, y: -2, r: 2, result: false},
-    {id: 4, x: -5, y: -3, r: 5, result: true},
-  ];
-
-  data: CheckingHitQuery[] = this.testData;
   addQueryDialog;
+  isLoggingOut = false;
 
   constructor(private http: HttpClient, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
@@ -43,6 +31,18 @@ export class MainAppComponent implements OnInit {
     this.http.get("./assets/input-field-ranges.json").subscribe((data) =>
       this.inputFieldRanges = data as FieldRanges
     );
+
+    this.http.get("api/app/user-info?with-queries=true").subscribe(
+      ({result: {email, queries = []}}: any) => {
+        this.userEmail = email;
+        this.data = queries;
+        this.resetSelectedQuery();
+      },
+      (error) => {
+        this.snackBar.open(error.error.message);
+        this.router.navigateByUrl("/user-entry");
+      }
+    )
   }
 
 
@@ -61,8 +61,36 @@ export class MainAppComponent implements OnInit {
       data: { inputFieldRanges: this.inputFieldRanges }
     });
     this.addQueryDialog.afterClosed().subscribe((res) => {
-      console.log(res);
+      this.addQueries(res);
     });
+  }
+
+  addQueries(generatedQueries: CheckingHitQuery[]) {
+    let addedQueryCount = 0;
+    (of(...generatedQueries).pipe(
+      map(query => this.http.get(`api/app/check-hit?${encodeFormData(query)}`)),
+      concatAll()
+    )).pipe(
+      map((res: ApiJSONResponse) => res.result)
+    ).subscribe(
+      (query: CheckingHitQuery) => {
+        ++addedQueryCount;
+        this.data.unshift(query);
+      },
+      (error) => console.log(error),
+      () => {
+        this.snackBar.open(
+          (addedQueryCount > 0 ? `Added ${addedQueryCount} queries. ` : '') +
+          (addedQueryCount < generatedQueries.length - 1 ? `${generatedQueries.length - addedQueryCount} queries could not be add for some reasons.` : '')
+        );
+        this.resetSelectedQuery();
+        this.checkingHitQueriesTable.renderRows();
+      }
+    );
+  }
+
+  resetSelectedQuery() {
+    this._selectedQuery = this.data.length > 0 ? this.data[0] : null;
   }
 
   get selectedQuery(): CheckingHitQuery {

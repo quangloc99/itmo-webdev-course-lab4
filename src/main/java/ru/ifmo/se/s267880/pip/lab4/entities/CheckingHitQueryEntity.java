@@ -38,7 +38,7 @@ public class CheckingHitQueryEntity {
         }
 
         if (x.signum() >= 0 && y.signum() < 0) {
-            return x.subtract(y).compareTo(r) >= 0;
+            return x.subtract(y).compareTo(r) <= 0;
         }
 
         if (x.signum() < 0 && y.signum() >= 0) {
@@ -51,6 +51,7 @@ public class CheckingHitQueryEntity {
 
     public JsonObjectBuilder getJsonBuilder() {
         return Json.createObjectBuilder()
+                .add("id", id)
                 .add("x", x)
                 .add("y", y)
                 .add("r", r)

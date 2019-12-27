@@ -1,8 +1,10 @@
 package ru.ifmo.se.s267880.pip.lab4.entities;
 
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObjectBuilder;
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Entity
 public class UserEntity {
@@ -55,5 +57,20 @@ public class UserEntity {
     public void addOwnedQuery(CheckingHitQueryEntity query) {
         ownedQueries.add(query);
         query.setOwner(this);
+    }
+
+    public JsonObjectBuilder getJsonBuilder(boolean withQueries) {
+        JsonObjectBuilder builder = Json.createObjectBuilder();
+        builder.add("email", email);
+        if (withQueries) {
+            JsonArrayBuilder queryJsonArr = Json.createArrayBuilder();
+            if (ownedQueries != null) {
+                for (ListIterator<CheckingHitQueryEntity> it = ownedQueries.listIterator(ownedQueries.size()); it.hasPrevious(); ) {
+                    queryJsonArr.add(it.previous().getJsonBuilder().build());
+                }
+            }
+            builder.add("queries", queryJsonArr.build());
+        }
+        return builder;
     }
 }

@@ -5,6 +5,7 @@
         <jta-data-source>java:/MyDS</jta-data-source>
         <non-jta-data-source>java:/MyDS</non-jta-data-source>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <shared-cache-mode>NONE</shared-cache-mode>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>

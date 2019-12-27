@@ -25,6 +25,21 @@ public class MainAppServices {
     @Inject private AppStateBean appState;
 
     @GET
+    @Path("/user-info")
+    @Produces("application/json")
+    public Response getUserInfo(@QueryParam("with-queries") Boolean withQueries) {
+        if (appState.getUser() == null) {
+            return Response.status(Response.Status.FORBIDDEN).entity(SimpleMessage.fail("Currently there is no logged in user.")).build();
+        }
+        if (withQueries == null) withQueries = false;
+        return Response.ok().entity(
+                SimpleMessage.success("").getJsonBuilder()
+                        .add("result", appState.getUser().getJsonBuilder(withQueries).build())
+                        .build()
+        ).build();
+    }
+
+    @GET
     @Path("/check-hit")
     @Produces("application/json")
     public Response addCheckHitQuery(
@@ -47,7 +62,7 @@ public class MainAppServices {
                 msg.setMessage("This query has no owner since you did not log in.");
             }
             JsonObject res = msg.getJsonBuilder()
-                    .add("query", query.getJsonBuilder().build())
+                    .add("result", query.getJsonBuilder().build())
                     .build();
             return Response.ok().entity(res.toString()).build();
         } catch (NullPointerException | EJBException e) {
