@@ -3,6 +3,8 @@ import {HttpClient} from "@angular/common/http";
 import {CheckingHitQuery, FieldRanges, getCSSVariable} from "../../helpers/utils";
 import {MatDialog} from "@angular/material/dialog";
 import {AddQueryDialogComponent} from "./add-query-dialog/add-query-dialog.component";
+import {Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-main-app',
@@ -10,6 +12,7 @@ import {AddQueryDialogComponent} from "./add-query-dialog/add-query-dialog.compo
   styleUrls: ['./main-app.component.css']
 })
 export class MainAppComponent implements OnInit {
+  isLoggingOut= false;
   inputFieldRanges: FieldRanges;
 
   testData: CheckingHitQuery[] = [
@@ -34,7 +37,7 @@ export class MainAppComponent implements OnInit {
   data: CheckingHitQuery[] = this.testData;
   addQueryDialog;
 
-  constructor(private http: HttpClient, private dialog: MatDialog) { }
+  constructor(private http: HttpClient, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.http.get("./assets/input-field-ranges.json").subscribe((data) =>
@@ -67,5 +70,17 @@ export class MainAppComponent implements OnInit {
       return { x: 0, y: 0, r: 0, result: false};
     }
     return this._selectedQuery;
+  }
+
+  doLogout() {
+    this.isLoggingOut = true;
+    this.http.post('api/user-entry/logout', '')
+      .subscribe(
+        res => this.router.navigateByUrl('/user-entry'),
+        error => {
+          this.isLoggingOut = false;
+          this.snackBar.open(error.error.message);
+        }
+      )
   }
 }

@@ -2,6 +2,7 @@
   <h1>Pip lab 4</h1>
   <span class="space-filler"></span>
 
+  <button mat-flat-button color="basic" (click)="doLogout()" [disabled]="isLoggingOut">Logout</button>
 </mat-toolbar>
 
 <div id="content">
@@ -53,6 +54,12 @@
       </table>
     </mat-card>
 
-    <button id="add-query-button" mat-raised-button color="primary" (click)="showAddQueryDialog()">+ Add new query</button>
+    <button id="add-query-button"
+            mat-raised-button color="primary"
+            (click)="showAddQueryDialog()"
+            [disabled]="isLoggingOut"
+    >
+      + Add new query
+    </button>
   </div>
 </div>
