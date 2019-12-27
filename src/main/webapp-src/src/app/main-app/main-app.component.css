@@ -1,20 +1,21 @@
-:host {
+#content {
   display: flex;
+  margin-top: 20px;
 }
 
-:host > * {
+#content > * {
   margin-left: 16px;
 }
 
-:host > :last-child {
+#content > :last-child {
   margin-right: 16px;
 }
 
-:host-context(.mobile) > * {
+:host-context(.mobile) #content > * {
   margin: 0;
 }
 
-:host-context(.mobile) {
+:host-context(.mobile) #content {
   flex-direction: column;
   justify-content: center;
 }

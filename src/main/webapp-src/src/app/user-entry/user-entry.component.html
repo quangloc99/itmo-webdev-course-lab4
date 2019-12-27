@@ -1,4 +1,10 @@
-<mat-card>
+<mat-toolbar id="app-header-bar" color="primary">
+  <h1>Pip lab 4</h1>
+  <span class="space-filler"></span>
+
+</mat-toolbar>
+
+<mat-card [style.marginTop.px]="20">
   <mat-tab-group mat="center">
     <mat-tab label="Login">
       <form (submit)="doLogin()">
